@@ -3,6 +3,8 @@ import Header from "./components/Header.jsx" //파일 확장자 생략 가능
 import Main from "./components/Main.jsx"
 import Footer from "./components/Footer.jsx"
 import Button from "./components/Button.jsx"
+import Bulb from "./components/Bulb.jsx"
+import Counter from "./components/Counter.jsx"
 import {useState} from "react";
 
 /* 
@@ -30,19 +32,17 @@ const buttonProps = { //spread 연산자 : ...사용
 //  )
 //}
 
+
 function App() {
-  const [state, setState] = useState();
-  console.log(state);
-  console.log(setState);
+  //const [state, setState] = useState();
+  
+
+  //let light = "OFF"; //변수로 만들면 왜 안될까? -> 리렌더링되지x(화면변화x)
 
   return <>
-    <h1>{state}</h1>
-    <button onClick = {() => {
-    
-  }}
-      
-    </button>
+    <Bulb/>
+    <Counter/>
   </>;
 }
 
-export default App
+export default App;
