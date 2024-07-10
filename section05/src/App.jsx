@@ -7,6 +7,7 @@ import './App.css'
 // import Counter from "./components/Counter.jsx"
 import Resister from './components/Resister.jsx'
 //import {useState} from "react";
+import HookExam from './components/HookExam.jsx';
 
 /* 
 function App() { //app(이름) component //부모 컴포넌트(렌더링 되려면 app컴포넌트에 있어야됨)
@@ -37,9 +38,7 @@ const buttonProps = { //spread 연산자 : ...사용
 function App() {
   return (
   <>
-    {/* <Bulb />
-    <Counter/> */}
-    <Resister/>
+    <HookExam/>
   </>
   )
 }

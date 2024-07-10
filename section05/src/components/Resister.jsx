@@ -20,6 +20,7 @@ const Resister = () => {
     });
 
     const countRef = useRef(0); //초기값 설정 가능 
+    const inputRef = useRef();
 
     // console.log(refObj);
     // console.log(refObj.current);
@@ -35,13 +36,26 @@ const Resister = () => {
     //     })
     // }
 
+    let count = 0;
+
     const onChange = (e) => {
+        //countRef.current++;
+        count++;
+        console.log(count);
         console.log(e.target.name, e.target.value)
         setInput({
             ...input,
             [e.target.name] : e.target.valuev //event가 발생한 곳의 name 속성 : 값
         })
     }
+
+    const onSubmit = () => {
+        if(input.name === "") {
+            //이름을 입력하는 dom 요소 포커스
+            console.log(inputRef.current);
+            inputRef.current.focus();
+        }
+    };
 
     return (
         <div>
@@ -52,6 +66,7 @@ const Resister = () => {
 
             <div>
             <input 
+            ref={inputRef}
             value={input.name} 
             name = "name"
             onChange={onChange} 
@@ -83,6 +98,9 @@ const Resister = () => {
                 name = "bio"
                 onChange={onChange}></textarea>
                 {input.bio}
+            </div>
+            <div>
+                <button onClick={onSubmit}>제출</button>
             </div>
             
         </div>
