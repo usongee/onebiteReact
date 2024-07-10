@@ -1,11 +1,12 @@
 import './App.css'
-import Header from "./components/Header.jsx" //파일 확장자 생략 가능
-import Main from "./components/Main.jsx"
-import Footer from "./components/Footer.jsx"
-import Button from "./components/Button.jsx"
-import Bulb from "./components/Bulb.jsx"
-import Counter from "./components/Counter.jsx"
-import {useState} from "react";
+// import Header from "./components/Header.jsx" //파일 확장자 생략 가능
+// import Main from "./components/Main.jsx"
+// import Footer from "./components/Footer.jsx"
+// import Button from "./components/Button.jsx"
+// import Bulb from "./components/Bulb.jsx"
+// import Counter from "./components/Counter.jsx"
+import Resister from './components/Resister.jsx'
+//import {useState} from "react";
 
 /* 
 function App() { //app(이름) component //부모 컴포넌트(렌더링 되려면 app컴포넌트에 있어야됨)
@@ -34,28 +35,13 @@ const buttonProps = { //spread 연산자 : ...사용
 
 
 function App() {
-//  const [state, setState] = useState(0);
-
-  const [count, setCount] = useState(0);
-  const [light, setLight] = useState("OFF");
-
-  return <>
-  <div>
-    <h1>{light}</h1>
-    <button onClick={() => {
-      setLight(light ==="ON" ? "OFF" : "ON")
-    }}>
-      {light==="ON" ? "끄기" : "켜기"}</button>
-  </div>
-  <div>
-    <h1>{count}</h1>
-    <button onClick = {()=>{
-      setCount(count + 1)
-    }}>
-    +
-    </button>
-    </div>
-  </>;
+  return (
+  <>
+    {/* <Bulb />
+    <Counter/> */}
+    <Resister/>
+  </>
+  )
 }
 
 export default App;
