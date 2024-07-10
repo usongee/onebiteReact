@@ -31,17 +31,27 @@ const buttonProps = { //spread 연산자 : ...사용
 //}
 
 function App() {
-  const [state, setState] = useState();
-  console.log(state);
-  console.log(setState);
+//  const [state, setState] = useState(0);
+
+  const [count, setCount] = useState(0);
+  const [light, setLight] = useState("OFF");
 
   return <>
-    <h1>{state}</h1>
-    <button onClick = {() => {
-    
-  }}
-      
+  <div>
+    <h1>{light}</h1>
+    <button onClick={() => {
+      setLight(light ==="ON" ? "OFF" : "ON")
+    }}>
+      {light==="ON" ? "끄기" : "켜기"}</button>
+  </div>
+  <div>
+    <h1>{count}</h1>
+    <button onClick = {()=>{
+      setCount(count + 1)
+    }}>
+    +
     </button>
+    </div>
   </>;
 }
 
