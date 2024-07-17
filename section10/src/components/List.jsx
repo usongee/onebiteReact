@@ -1,5 +1,5 @@
 import "./List.css"
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import TodoItem from "./TodoItem";
 
 const List= ( {todos, onUpdate, onDelete } ) => {
@@ -20,23 +20,23 @@ const List= ( {todos, onUpdate, onDelete } ) => {
     }
     const filteredTodos = getFilterData();
 
-    const getAnalyzedData = () => {
+    const {totalCount, doneCount, notDoneCount} = 
+    useMemo(()=>{ //콜백함수의 반환값을 그대로 반환
+        console.log("getAnalyzed 호출")
         const totalCount = todos.length;
-        const doneCount = todos.filter((todo) => todos.isDone).length;
+        const doneCount = todos.filter((todo) => todo.isDone).length;
         const notDoneCount = totalCount - doneCount;
 
         return {totalCount, doneCount, notDoneCount};
-    }
-
-    const {totalCount, doneCount, notDoneCount} = getAnalyzedData();
+    }, [todos]);
 
     return (
         <div className="List">
             <h4>Todo List❤️😍😍</h4>
             <div>
-                <div>{totalCount}</div>
-                <div>{doneCount}</div> 
-                <div>{notDoneCount}</div>
+                <div>total : {totalCount}</div>
+                <div>done : {doneCount}</div> 
+                <div>notDone : {notDoneCount}</div>
             </div>
             <input 
                 placeholder="검색어를 입력해주세요"
