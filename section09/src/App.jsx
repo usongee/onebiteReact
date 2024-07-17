@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
 //import Exam from './components/Exam';
+import Test from './components/Test';
 import './App.css'
 import { useState, useRef, useReducer } from 'react';
 import TodoItem from './components/TodoItem';
