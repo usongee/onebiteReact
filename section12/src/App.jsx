@@ -6,7 +6,7 @@ import New from './pages/New'
 import Notfound from './pages/Notfound';
 import Edit from './pages/Edit';
 
-import { useReducer } from 'react';
+import { useReducer, useRef } from 'react';
 
 const mockData = [
   {
@@ -24,20 +24,79 @@ const mockData = [
 ]
 
 function reducer(state, action){
-  return state;
+
+
+  switch(action.type) {
+    case 'CREATE' :
+       return [action.data, ...state]
+    case 'UPDATE' : 
+      return state.map((item)=>
+         String(item.id) ===String(action.data.id) ? action.data : item
+    );
+    case 'DELETE' : 
+    return state.filter((item)=> 
+      String(item.id) !== String(action.id)
+    )
+    default : 
+    return state;
+  }
+  
 }
 function App() {
 
-  const nav = useNavigate();
-
   const [data, dispatch] = useReducer(reducer, mockData);
 
-  const onClickButton = () => {
-    nav("/new")
+  const idRef = useRef(3);
+
+  //새로운 일기 추가 : 테스트 App() components 확인
+  const onCreate = (createdDate, emotionId, content) => {
+    //새로운 일기를 추가하는 기능 
+    dispatch({
+      type:"CREATE", 
+      data : {
+        id: idRef.current++,
+        createdDate, 
+        emotionId, 
+        content,
+      },
+    }) 
   }
+
+  // 기존 일기 수정
+  const onUpdate =(id, createdDate, emotionId, content)=>{
+    dispatch({
+      type:"UPDATE", 
+      data : {
+        id,
+        createdDate, 
+        emotionId, 
+        content
+      }
+    })
+  }
+
+  //기존 일기 삭제
+  const onDelete = (id) => {
+    dispatch({
+      type:"DELETE",
+      id,
+    })
+  }
+
 
   return (
     <>
+    <button onClick={()=> {
+      onCreate(new Date().getTime(), 1, "일기 내용")
+    }}>추가</button>
+    <button onClick={()=> {
+      onUpdate(1, new Date().getTime(), 3, "수정된 일기 내용입니다 "); 
+    }}
+    >업데이트</button>
+    <button onClick={()=> {
+      onDelete(1); 
+    }}
+    >삭제</button>
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/new" element={<New/>} />
